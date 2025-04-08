@@ -10,7 +10,7 @@ template <typename T>
 void print_matrix(std::vector<std::vector<T>> matrix) {
     for (int i = 0; i < matrix.size(); i++) {
         for (int j = 0; j < matrix[i].size(); j++) {
-            std::cout << matrix[i][j] << " ";
+            std::cout << matrix[i][j] << "\t";
         }
         std::cout << std::endl;
     }
@@ -95,8 +95,8 @@ void run_double(int n, std::vector<std::vector<double>> matrix1, std::vector<std
     std::cin >> first_row;
     std::cout << "Enter second row to swap with: ";
     std::cin >> second_row;
-    if (first_row > n - 1 || second_row > n - 1) {
-        std::cout << "Columns out of bounds." << std::endl;
+    if (first_row > n - 1 || first_row < 0 || second_row > n - 1 || second_row < 0) {
+        std::cout << "Rows out of bounds." << std::endl;
     }
     else {
         std::cout << "Enter which matrix to swap (1 or 2): ";
@@ -122,8 +122,8 @@ void run_double(int n, std::vector<std::vector<double>> matrix1, std::vector<std
     std::cin >> first_col;
     std::cout << "Enter second column to swap with: ";
     std::cin >> second_col;
-    if (first_col > n - 1 || second_col > n - 1) {
-        std::cout << "Rows out of bounds." << std::endl;
+    if (first_col > n - 1 || first_col < 0 || second_col > n - 1 || second_col < 0) {
+        std::cout << "Cols out of bounds." << std::endl;
     }
     else {
         std::cout << "Enter which matrix to swap (1 or 2): ";
@@ -151,7 +151,7 @@ void run_double(int n, std::vector<std::vector<double>> matrix1, std::vector<std
     std::cin >> first_row;
     std::cout << "Enter column to update: ";
     std::cin >> first_col;
-    if (first_row > n - 1 || first_col > n - 1) {
+    if (first_row > n - 1 || first_row < 0 || first_col > n - 1 || first_col < 0) {
         std::cout << "Row/Column out of bounds." << std::endl;
     }
     else {
@@ -192,8 +192,8 @@ void run_int(int n, std::vector<std::vector<int>> matrix1, std::vector<std::vect
     std::cin >> first_row;
     std::cout << "Enter second row to swap with: ";
     std::cin >> second_row;
-    if (first_row > n - 1 || second_row > n - 1) {
-        std::cout << "Columns out of bounds." << std::endl;
+    if (first_row > n - 1 || first_row < 0 || second_row > n - 1 || second_row < 0) {
+        std::cout << "Rows out of bounds." << std::endl;
     }
     else {
         std::cout << "Enter which matrix to swap (1 or 2): ";
@@ -219,8 +219,8 @@ void run_int(int n, std::vector<std::vector<int>> matrix1, std::vector<std::vect
     std::cin >> first_col;
     std::cout << "Enter second column to swap with: ";
     std::cin >> second_col;
-    if (first_col > n - 1 || second_col > n - 1) {
-        std::cout << "Rows out of bounds." << std::endl;
+    if (first_col > n - 1 || first_col < 0 || second_col > n - 1 || second_col < 0) {
+        std::cout << "Cols out of bounds." << std::endl;
     }
     else {
         std::cout << "Enter which matrix to swap (1 or 2): ";
@@ -248,7 +248,7 @@ void run_int(int n, std::vector<std::vector<int>> matrix1, std::vector<std::vect
     std::cin >> first_row;
     std::cout << "Enter column to update: ";
     std::cin >> first_col;
-    if (first_row > n - 1 || first_col > n - 1) {
+    if (first_row > n - 1 || first_row < 0 || first_col > n - 1 || first_col < 0) {
         std::cout << "Row/Column out of bounds." << std::endl;
     }
     else {
@@ -378,153 +378,4 @@ int main()
         }
         run_double(n, matrix1, matrix2);
     }
-    /*
-    std::vector<int> matrixRow;
-    std::string line;
-    for (int i = 0; i < n; i++) {
-        getline(file, line);
-        std::string num;
-        for (int i = 0; i < line.length(); i++) {
-            if (line[i] == ' ') {
-                matrixRow.push_back(stoi(num));
-                num.clear();
-            }
-            else {
-                num += line[i];
-            }
-        }
-        if (!num.empty()) {
-            matrixRow.push_back(stoi(num));
-            num.clear();
-        }
-        matrix1.push_back(matrixRow);
-        matrixRow.clear();
-        
-    }
-    for (int i = 0; i < n; i++) {
-        getline(file, line);
-        std::string num;
-        for (int i = 0; i < line.length(); i++) {
-            if (line[i] == ' ') {
-                matrixRow.push_back(stoi(num));
-                num.clear();
-            }
-            else {
-                num += line[i];
-            }
-        }
-        if (!num.empty()) {
-            matrixRow.push_back(stoi(num));
-            num.clear();
-        }
-        matrix2.push_back(matrixRow);
-        matrixRow.clear();
-
-    }
-    std::cout << "Matrix 1: " << std::endl;
-    print_matrix(matrix1);
-    std::cout << "Matrix 2: " << std::endl;
-    print_matrix(matrix2);
-    add_matrix(matrix1, matrix2);
-    multiply_matrix(matrix1, matrix2);
-    std::cout << "Matrix 1 diagonal sum: " << std::endl;
-    calculate_diagonals(matrix1);
-    std::cout << "Matrix 2 diagonal sum: " << std::endl;
-    calculate_diagonals(matrix2);
-    
-    int first_row, second_row, matrix_version;
-    std::cout << "Enter first row to swap with: ";
-    std::cin >> first_row;
-    std::cout << "Enter second row to swap with: ";
-    std::cin >> second_row;
-    if (first_row > stoi(n)-1 || second_row > stoi(n)-1) {
-        std::cout << "Columns out of bounds." << std::endl;
-    }
-    else {
-        std::cout << "Enter which matrix to swap (1 or 2): ";
-        std::cin >> matrix_version;
-        if (matrix_version != 1 && matrix_version != 2) {
-            std::cout << "Invalid matrix selected. " << std::endl;
-        }
-        else {
-            switch (matrix_version) {
-            case(1):
-                swap_rows(first_row, second_row, matrix1);
-                break;
-            case(2):
-                swap_rows(first_row, second_row, matrix2);
-                break;
-            default:
-                break;
-            }
-        }
-    }
-    int first_col, second_col;
-    std::cout << "Enter first column to swap with: ";
-    std::cin >> first_col;
-    std::cout << "Enter second column to swap with: ";
-    std::cin >> second_col;
-    if (first_col > n - 1 || second_col > n - 1) {
-        std::cout << "Rows out of bounds." << std::endl;
-    }
-    else {
-        std::cout << "Enter which matrix to swap (1 or 2): ";
-        std::cin >> matrix_version;
-        if (matrix_version != 1 && matrix_version != 2) {
-            std::cout << "Invalid matrix selected. " << std::endl;
-        }
-        else {
-            switch (matrix_version) {
-            case(1):
-                swap_cols(first_col, second_col, matrix1);
-                break;
-            case(2):
-                swap_cols(first_col, second_col, matrix2);
-                break;
-            default:
-                break;
-            }
-        }
-    }
-    int new_value;
-    std::cout << "Enter new value: ";
-    std::cin >> new_value;
-    std::cout << "Enter row to update: ";
-    std::cin >> first_row;
-    std::cout << "Enter column to update: ";
-    std::cin >> first_col;
-    if (first_row > n - 1 || first_col > n - 1) {
-        std::cout << "Row/Column out of bounds." << std::endl;
-    }
-    else {
-        std::cout << "Enter which matrix to swap (1 or 2): ";
-        std::cin >> matrix_version;
-        if (matrix_version != 1 && matrix_version != 2) {
-            std::cout << "Invalid matrix selected. " << std::endl;
-        }
-        else {
-            switch (matrix_version) {
-            case(1):
-                update_matrix(first_row, first_col, new_value, matrix1);
-                break;
-            case(2):
-                update_matrix(first_row, first_col, new_value, matrix2);
-                break;
-            default:
-                break;
-            }
-        }
-    }
-    */
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-c
-OBJECTS = 348Lab8.cpp
+OBJECTS = 348Lab9.cpp
 all: prog run
 prog: $(OBJECTS)
 	$(CC) $(OBJECTS) -o prog
